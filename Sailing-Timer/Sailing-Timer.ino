@@ -18,9 +18,42 @@ void loop() {
 
   if(digitalRead(twentySec)){
     Serial.println("TWENTY SEC IS PRESSED");
-    attention();
+    //attention();
+    twentySeconds();
   }
 
+}
+// Twenty Second Timer Function
+void twentySeconds(){
+  // Twenty Seconds
+    tone(buzzers, 450); 
+    delay(300);        
+    noTone(buzzers);
+    delay(300);        
+    tone(buzzers, 450);
+    delay(300);       
+    noTone(buzzers);
+
+    delay(9100);
+
+  // Ten Seconds
+    tone(buzzers, 450); 
+    delay(300);        
+    noTone(buzzers);
+
+    delay(4700);
+  // Five - One
+    for(int i = 1;i <=5; i++){
+      tone(buzzers, 450); 
+      delay(300);        
+      noTone(buzzers);
+      delay(700);
+    }
+    
+  // GO
+      tone(buzzers, 450); 
+      delay(900);        
+      noTone(buzzers);
 }
 
 
