@@ -2,11 +2,13 @@
 int buzzers = 7;
 int oneMin = 4;
 int twentySec = 5;
+int cancel = 2;
 
 void setup() {
   pinMode(buzzers,OUTPUT);
   pinMode(oneMin,INPUT);
   pinMode(twentySec,INPUT);
+  pinMode(cancel, INPUT);
   Serial.begin(9600);
 }
 
@@ -25,6 +27,8 @@ void loop() {
     twentySeconds();
   }
 
+
+  delay(1000);
 }
 
 void oneMinute(){
@@ -35,6 +39,7 @@ void oneMinute(){
 
     delay(29000);
 
+  // Thirty Seconds
     tone(buzzers, 450); 
     delay(300);        
     noTone(buzzers);
@@ -54,9 +59,13 @@ void oneMinute(){
 }
 
 
-
 // Twenty Second Timer Function
 void twentySeconds(){
+
+if(digitalRead(cancel)){
+Serial.println("Program Canceled");
+return;}
+      
   // Twenty Seconds
     tone(buzzers, 450); 
     delay(300);        
@@ -66,7 +75,17 @@ void twentySeconds(){
     delay(300);       
     noTone(buzzers);
 
+// Cancel
+if(digitalRead(cancel)){
+Serial.println("Program Canceled");
+return;}
+    
     delay(9100);
+
+// Cancel
+if(digitalRead(cancel)){
+Serial.println("Program Canceled");
+return;}
 
   // Ten Seconds
     tone(buzzers, 450); 
@@ -74,7 +93,13 @@ void twentySeconds(){
     noTone(buzzers);
 
     delay(4700);
-    
+
+// Cancel
+if(digitalRead(cancel)){
+Serial.println("Program Canceled");
+return;}
+
+
   // Five - One
     for(int i = 1;i <=5; i++){
       tone(buzzers, 450); 
